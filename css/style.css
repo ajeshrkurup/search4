@@ -1,3 +1,7 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
 #nav-top {
     
     background: linear-gradient(#0059b3 , #1b5998, #3a5978);
@@ -7,14 +11,17 @@
 
 #nav-top a {
     display: inline-block;
-    width: 120px;
+    width: 150px;
     padding: 0 5px 15px 5px;
-    border: 1px solid gray;
+    border: 1px solid red;
+    border-radius: 5px;
     height: 50px;
-    margin-right: 10%;
+    margin-right: 6%;
     margin-left: 5%;
     font-size: 30px;
-    color: yellowgreen;   
+    color: yellowgreen;
+    letter-spacing: 1.5px;
+    background-color: #003366;
 }
 
 #nav-top input {
@@ -37,13 +44,36 @@
 
 }
 
-#resultContainer {
-    min-width: 40%;
+.panel-title img {
+    float: right;
+    height: 20px;
+    width: 80px;
+}
+
+#result-container {
+    width: 60%;
     float: left;
-    margin-left: 20px;
+    margin-left: 10%;
     padding-bottom: 10px;
     margin-bottom: 30px;
     
+}
+
+.contact-number {
+    float: right;
+    color: crimson;
+}
+
+#result-container a {
+    font-size: 16px;
+    letter-spacing: 1.2px;
+    background-color: beige;
+}
+#result-container a:hover {
+    cursor: pointer;
+    color: darkviolet;
+    text-decoration: none;
+
 }
 
 .clearAll {

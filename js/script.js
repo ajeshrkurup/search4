@@ -3,7 +3,7 @@ $(document).ready(function() {
     var resultArray = [];
     
     $("#searchButton").click(function() {
-        $("#resultContainer").empty();
+        $("#result-container").empty();
         var searchTerm = $("#searchTerm").val();
         var zipcode = $("#zipcode").val();
         
@@ -11,19 +11,49 @@ $(document).ready(function() {
         
         $.get(url, function(data) {
             resultArray = data.query.results.Result;
+            
             for(var i = 0; i<resultArray.length; i++) {
-                $("#resultContainer").append("<div class=\"panel-heading panel-title\">"+resultArray[i].Title+"</div>"); 
+                $("#result-container").addClass("panel panel-info");
+                var rating = parseInt(resultArray[i].Rating.AverageRating);
+                console.log(rating);
+                if(rating === 0 || isNaN(rating)) {
+                    
+                $("#result-container").append("<div class=\"panel-heading panel-title\">"+resultArray[i].Title+"<img src=img/0_stars.jpg></div>"); 
+                }
+                
+                if(rating === 1) {
+                $("#result-container").append("<div class=\"panel-heading panel-title\">"+resultArray[i].Title+"<img src=img/1_stars.jpg></div>"); 
+                }
+                
+                if(rating === 2) {
+                $("#result-container").append("<div class=\"panel-heading panel-title\">"+resultArray[i].Title+"<img src=img/2_stars.jpg></div>"); 
+                }
+                
+                if(rating === 3) {
+                $("#result-container").append("<div class=\"panel-heading panel-title\">"+resultArray[i].Title+"<img src=img/3_stars.jpg></div>"); 
+                }
+                
+                if(rating === 4) {
+                $("#result-container").append("<div class=\"panel-heading panel-title\">"+resultArray[i].Title+"<img src=img/4_stars.jpg></div>"); 
+                }
+                
+                if(rating >= 5) {
+                $("#result-container").append("<div class=\"panel-heading panel-title\">"+resultArray[i].Title+"<img src=img/5_stars.jpg></div>"); 
+                }
+                
+                
                 var id = "result"+i;
-                $("#resultContainer").append("<div class=\"panel-body\" id=\""+id+"\"</div>");
+                $("#result-container").append("<div class=\"panel-body\" id=\""+id+"\"</div>");
                 id = "#"+id;
-                $(id).append("<p>"+resultArray[i].Title+"</p>");
-                $(id).append("<p>"+resultArray[i].Address+"</p>");
+                $(id).append("<h4><span class=\"label label-info\">Address:</span></h4>");
+                $(id).append("<p>"+resultArray[i].Address+"<span class=\"glyphicon glyphicon-phone-alt contact-number\">"+resultArray[i].Phone+"</span></p>");
                 $(id).append("<p>"+resultArray[i].City+"</p>");
-                $(id).append("<p>"+resultArray[i].Phone+"</p>");
-                $(id).append("<p>"+resultArray[i].Rating.AverageRating+"</p>");
-                $(id).append("<p>"+resultArray[i].Rating.TotalReviews+"</p>");
-                $(id).append("<p>"+resultArray[i].BusinessUrl+"</p>");
+                
+                
+                
+                $(id).append("<a href=\""+resultArray[i].BusinessUrl+"\"target=\"_blank\">Website</a>");
             }
+            
             $("#pageSelector").css("visibility", "visible");
         });
     });
